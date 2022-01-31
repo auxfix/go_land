@@ -1,9 +1,20 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 func main() {
-	card := "Ace of Spades"
-	card = "Five of Diamonds"
-	fmt.Println(card)
+	cards := []string{newCard(1), newCard(2), newCard(3)}
+
+	cards = append(cards, newCard(6))
+
+	for i, card := range cards {
+		fmt.Print(i, card)
+	}
+}
+
+func newCard(ndx int) string {
+	return "__Five of Diamonds(" + strconv.Itoa(ndx) + ")  "
 }
