@@ -6,12 +6,12 @@ import (
 )
 
 func main() {
-	cards := []string{newCard(1), newCard(2), newCard(3)}
+	cards := deck{newCard(1), newCard(2), newCard(3)}
 
 	cards = append(cards, newCard(6))
 
 	for i, card := range cards {
-		fmt.Print(i, card)
+		fmt.Println(i, card)
 	}
 }
 
