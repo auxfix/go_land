@@ -1,9 +1,9 @@
 package main
 
+import "fmt"
+
 func main() {
-	cards := deck{"two", "three", "four"}
+	cards := newDeck()
 
-	cards = append(cards, "One")
-
-	cards.print()
+	fmt.Println(cards.toString())
 }
