@@ -2,9 +2,19 @@ package main
 
 import (
 	"github.com/auxfix/go_land/deckPack"
+	"flag"
 )
 
 func main() {
-	dck := deckPack.NewDeck()
-	dck.SaveToFile("my_not_areally_first_file")
+	readOrWriteFlagPtr := flag.String("way", "write", "read/write")
+	fileNamePtr := flag.String("file", "deck_file", "filename")
+	flag.Parse()
+	if *readOrWriteFlagPtr == "write" {
+		dck := deckPack.NewDeck()
+		dck.SaveToFile(*fileNamePtr)
+	} else {
+		dck := deckPack.ReadDeckFromDisk(*fileNamePtr)
+		dck.Print()
+	}
+
 }
