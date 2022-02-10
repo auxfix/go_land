@@ -1,13 +1,14 @@
-package main
+package deckPack
 
 import (
 	"fmt"
+	"io/ioutil"
 	"strings"
 )
 
 type deck []string
 
-func newDeck() deck {
+func NewDeck() deck {
 	cards := deck{}
 	cardSuits := []string{"Spades", "Dimonds", "Hearts", "Clubs"}
 	cardValues := []string{"Ace", "Two", "Three", "Four"}
@@ -34,4 +35,8 @@ func deal(d deck, handsize int) (deck, deck) {
 func (d deck) toString() string {
 
 	return strings.Join([]string(d), ",")
+}
+
+func (d deck) SaveToFile(filename string) error {
+	return ioutil.WriteFile(filename, []byte(d.toString()), 0666)
 }
