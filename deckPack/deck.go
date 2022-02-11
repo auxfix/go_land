@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"os"
 	"strings"
+	"math/rand"
 )
 
 type deck []string
@@ -53,3 +54,13 @@ func ReadDeckFromDisk(filename string) deck {
 	d := deck(s)	
 	return d
 }
+
+
+func (d deck) Shuffle() deck {
+	for i := range d {
+		swapI := rand.Intn(len(d) -1)
+		d[i], d[swapI] = d[swapI], d[i]
+	}
+
+	return d
+} 
