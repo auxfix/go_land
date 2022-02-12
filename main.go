@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 	"os"
-
+	"github.com/auxfix/go_land/evenOdd"
 	"github.com/auxfix/go_land/deckPack"
 )
 
@@ -13,7 +13,14 @@ func main() {
 	readOrWriteFlagPtr := flag.String("way", "write", "read/write")
 	fileNamePtr := flag.String("file", "deck_file", "filename")
 	shflPtr := flag.Bool("shfl", false, "true/false")
+	evenOddPtr := flag.Bool("eod", false, "true/false")
 	flag.Parse()
+
+	if(*evenOddPtr) {
+		evenOdd.CreateAndPrintEvenOdd()
+		os.Exit(0)
+	}
+
 	if *readOrWriteFlagPtr == "write" {
 		dck := deckPack.NewDeck()
 		if(*shflPtr) { dck = dck.Shuffle() }
