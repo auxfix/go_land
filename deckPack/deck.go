@@ -9,7 +9,16 @@ import (
 	"time"
 )
 
-type deck []string
+type deck []card
+
+type card struct {
+	suit string
+	value string
+}
+
+func (crd card) GetStr() string {
+	return  crd.value + " of " + crd.suit
+}
 
 func NewDeck() deck {
 	cards := deck{}
@@ -18,7 +27,7 @@ func NewDeck() deck {
 
 	for _, suit := range cardSuits {
 		for _, value := range cardValues {
-			cards = append(cards, value+" of "+suit)
+			cards = append(cards, card{suit, value})
 		}
 	}
 
@@ -27,7 +36,7 @@ func NewDeck() deck {
 
 func (d deck) Print() {
 	for i, card := range d {
-		fmt.Println(i, card)
+		fmt.Printf("%v %+vi\n", i, card)
 	}
 }
 
@@ -36,8 +45,11 @@ func deal(d deck, handsize int) (deck, deck) {
 }
 
 func (d deck) ToString() string {
-
-	return strings.Join([]string(d), ",")
+	var s []string
+	for _, crd := range d {
+		s = append(s, crd.value + " of " + crd.suit )
+	}
+	return strings.Join(s , ",")
 }
 
 func (d deck) SaveToFile(filename string) error {
@@ -52,8 +64,13 @@ func ReadDeckFromDisk(filename string) deck {
 	}
 
 	s := strings.Split(string(bs),",");
-	d := deck(s)	
-	return d
+	var dk deck
+	for _ , st := range s {
+		tempStr := strings.Split(st, " of ")
+		dk  = append(dk, card{tempStr[0], tempStr[1]})
+	}
+
+	return dk
 }
 
 

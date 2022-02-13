@@ -13,12 +13,12 @@ func TestNewDeck(t *testing.T) {
 		t.Errorf("Expected length of deck %v but got %v", expLeng, len(dck))
 	}
 
-	if dck[0] != "One of Spades" {
-		t.Errorf("Expected first card be One o Spades but got %v", dck[0])
+	if dck[0].GetStr() != "One of Spades" {
+		t.Errorf("Expected first card be One o Spades but got %v", dck[0].GetStr())
 	}
 
-	if dck[len(dck) - 1] != "Four of Clubs" {
-		t.Errorf("Expected last card be Four of Clubs but got %v", dck[len(dck) - 1])
+	if dck[len(dck) - 1].GetStr() != "Four of Clubs" {
+		t.Errorf("Expected last card be Four of Clubs but got %v", dck[len(dck) - 1].GetStr())
 	}
 }
 
